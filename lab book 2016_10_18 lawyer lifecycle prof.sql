@@ -1,0 +1,54 @@
+SELECT
+   cub.professional_id
+  ,cub.as_of_date
+  ,cub.avvo_rating
+  ,cub.average_client_review_rating
+  ,cub.client_reviews
+  ,cub.client_reviews_all_time
+  ,cub.last_negative_client_review_date
+  ,cub.negative_client_reviews_all_time
+  ,cub.practice_area
+  ,cub.top_ad_revenue_practice_area
+  ,cub.top_ad_revenue_practice_area_1_year
+  ,cub.top_ad_revenue_parent_practice_area
+  ,cub.top_ad_revenue_parent_practice_area_1_year
+  ,cub.months_since_first_licensed
+  ,cub.months_since_claimed
+  ,cub.first_active_date
+  ,cub.target_impressions
+  ,cub.ad_revenue_mtd
+  ,cub.revenue_mtd
+  ,cub.mrr_ad
+  ,cub.mrr
+  ,cub.ls_participation
+  ,cub.has_ads
+  ,cub.state
+  ,cub.ad_revenue_state
+  ,cub.recent_active_months
+  ,cub.visits
+  ,cub.delivered_phone_call_acu
+  ,cub.delivered_email_acu
+  ,cub.delivered_website_contact_acu
+  ,cub.delivered_phone_calls
+  ,cub.delivered_phone_calls_ge_120s
+  ,cub.delivered_emails
+  ,cub.delivered_chat_messages
+  ,cub.delivered_chat_conversations
+  ,cub.delivered_website_contacts
+  ,cub.target_acv
+  ,cub.acv
+  ,cub.questions_answered
+  ,cub.questions_answered_1_year
+  ,cub.questions_answered_all_time
+  ,cub.peer_endorsements_given
+  ,cub.peer_endorsements_given_1_year
+  ,cub.peer_endorsements_given_all_time
+  ,cub.peer_endorsements_received
+  ,cub.peer_endorsements_received_1_year
+  ,cub.peer_endorsements_received_all_time
+  ,cub.delivered_impressions_block
+  ,cub.delivered_impressions_block_network
+  ,cub.practicing_flag
+FROM dm.lawyer_cube_data_by_day cub
+WHERE as_of_date = '2016-11-07'
+  AND professional_id IN (3406493, 4502575)
