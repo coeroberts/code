@@ -1,0 +1,51 @@
+<coordinator-app name="${scheduleName}"
+  frequency="${runningFrequency}"
+  start="${scheduleStartTime}" end="${scheduleEndTime}" timezone="America/Los_Angeles"
+  xmlns="uri:oozie:coordinator:0.4" xmlns:sla="uri:oozie:sla:0.2"
+  >
+  <controls>
+   <execution>${executionPolicy}</execution>
+  </controls>
+
+	<datasets>
+	<dataset name="input1" frequency="${Frequency}" initial-instance="${scheduleStartTime}" timezone="America/Los_Angeles">
+		 <uri-template>${nameNode}${triggerLocation}</uri-template>
+		 <done-flag>webanalytics.trg</done-flag>
+	</dataset>
+   </datasets>
+
+	<input-events>
+	<data-in name="coordInput1" dataset="input1">
+		<start-instance>${coord:current(-23)}</start-instance>
+		<end-instance>${coord:current(0)}</end-instance>
+	</data-in>
+	</input-events>
+
+  <action>
+   <workflow>
+      <app-path>${applicationPath}</app-path>
+      <configuration>
+        <property>
+          <name>oozie.use.system.libpath</name>
+          <value>true</value>
+        </property>
+        <property>
+          <name>nominal_time</name>
+          <value>${coord:nominalTime()}</value>
+        </property>
+		<property>
+          <name>nominal_date</name>
+          <value>${coord:formatTime(coord:dateOffset(coord:nominalTime(), -1, 'DAY'),"yyyy-MM-dd")}</value>
+        </property>
+      </configuration>
+   </workflow>
+   <sla:info>
+     <sla:nominal-time>${coord:nominalTime()}</sla:nominal-time>
+     <sla:should-start>${10 * MINUTES}</sla:should-start>
+     <sla:should-end>${90 * MINUTES}</sla:should-end>
+     <sla:max-duration>${90 * MINUTES}</sla:max-duration>
+     <sla:alert-events>start_miss,end_miss,duration_miss</sla:alert-events>
+     <sla:alert-contact>${failureEmailAddress}</sla:alert-contact>
+   </sla:info>  
+  </action>
+</coordinator-app>

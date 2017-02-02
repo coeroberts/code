@@ -1,0 +1,19 @@
+mrr_subscription_classification
+    customer_id
+    market_id
+    subscription_id
+    revenue_prior_month
+    revenue_current_month
+    mrr_prior_month
+    mrr_current_month
+    mrr_acquired
+    mrr_penetrated
+    mrr_retained
+    mrr_total
+    mrr_downsized
+    mrr_churned
+    customer_category
+    cancelled_date
+    expired_date
+    expired_reason
+    yearmonth

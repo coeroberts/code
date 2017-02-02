@@ -1,0 +1,14 @@
+subscription_dimension
+    subscription_id
+    customer_id
+    sales_order_id
+    inventory_id
+    inventory_type
+    ad_id
+    ad_type
+    stop_datetime
+    expire_datetime
+    source_system_update_datetime
+    expired_reason
+    record_flag
+    remnant_flag

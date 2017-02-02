@@ -1,0 +1,68 @@
+[
+     {
+        "environment": "*",
+        "namespace": "final",
+        "properties": [
+            {
+                "name": "applicationPath",
+                "value": "hdfs:///analytic/workflow/wf_tanuj/"
+            },
+            {
+                "name": "workflowName",
+                "value": "wf_tanuj"
+            },
+            {
+                "name": "scheduleName",
+                "value": "coord_wf_tanuj_Schedule"
+            }
+        ]
+    },
+    {
+        "environment": "*",
+        "namespace": "user",
+        "properties": [
+            {
+                "name": "applicationPath",
+                "value": "hdfs:///user/${user.name}/workflow/wf_tanuj/"
+            },
+            {
+                "name": "workflowName",
+                "value": "wf_tanuj-${user.name}"
+            },
+            {
+                "name": "scheduleName",
+                "value": "coord_wf_tanuj_Schedule-${user.name}"
+            }
+        ]
+    },
+    {
+        "environment": "*",
+        "namespace": "*",
+        "properties": [
+            {
+                "name": "oozie.coord.application.path",
+                "value": "${applicationPath}coordinator.xml"
+            },
+            {
+                "name": "executionPolicy",
+                "value": "LAST_ONLY"
+            },
+            {
+                "name": "runningFrequency",
+                "value": "00 13 * * *"
+            },
+            {
+                "name": "scheduleStartTime",
+                "value": "2016-11-10T13:00Z"
+            },
+            {
+                "name": "scheduleEndTime",
+                "value": "2016-11-20T14:00Z"
+            },
+            {
+                "name": "Frequency",
+                "value": "1440"
+            }
+        ]
+    }
+]

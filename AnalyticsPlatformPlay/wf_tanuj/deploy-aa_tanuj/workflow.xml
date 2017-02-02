@@ -1,0 +1,67 @@
+<workflow-app name="${workflowName}" xmlns="uri:oozie:workflow:0.5">
+
+    <global>
+        <job-tracker>${jobTracker}</job-tracker>
+        <name-node>${nameNode}</name-node>
+        <configuration>
+            <property>
+                <name>oozie.launcher.mapred.job.queue.name</name>
+                <value>${oozieLauncherQueueName}</value>
+            </property>
+        </configuration>
+    </global>
+
+	<credentials>
+		<credential name='hive_credentials' type='hcat'>
+			<property>
+				<name>hcat.metastore.uri</name>
+				<value>${hcatMetastoreUri}</value>
+			</property>
+			<property>
+				<name>hcat.metastore.principal</name>
+				<value>hive/_HOST@${principalRealm}</value>
+			</property>
+		</credential>
+		<credential name='hive2_credentials' type='hive2'>
+			<property>
+				<name>hive2.jdbc.url</name>
+				<value>${hive2Url}</value>
+			</property>
+			<property>
+				<name>hive2.server.principal</name>
+				<value>hive/_HOST@${principalRealm}</value>
+			</property>
+		</credential>
+	</credentials>
+	<start to="tanuj_test"/>
+
+	<action name="tanuj_test" cred="hive2_credentials" >
+		<hive2 xmlns="uri:oozie:hive2-action:0.1">
+			<jdbc-url>${hive2Url}</jdbc-url>
+			<script>tanuj_test.hql</script>
+			<param>dmDatabase=${dmDatabase}</param>
+			<param>mgdSrcDatabase=${mgdSrcDatabase}</param>
+			<param>dmDatabaseLocation=${dmDatabaseLocation}</param>
+			<param>mgdSrcDatabaseLocation=${mgdSrcDatabaseLocation}</param>
+			<file>${hiveConfigPath}/hive-site-conf.xml#hive-site-conf.xml</file>
+		</hive2>
+		<ok to="end"/>
+		<error to="killemail"/>
+	</action>
+
+	<action name="killemail">
+		<email xmlns="uri:oozie:email-action:0.1">
+			<to>${failureEmailAddress}</to>
+			<subject>bing_ad_performance has Failed</subject>
+			<body>Processing failed: [${wf:errorMessage(wf:lastErrorNode())}]</body>
+		</email>
+		<ok to="kill"/>
+		<error to="kill"/>
+	</action>
+	<kill name="kill">
+		<message>Action failed, error message[${wf:errorMessage(wf:lastErrorNode())}]</message>
+	</kill>
+	<end name="end"/>
+</workflow-app>
+
+

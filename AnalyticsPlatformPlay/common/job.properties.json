@@ -1,0 +1,87 @@
+[
+{
+    "environment" : "prod",
+    "namespace" : "*",
+    "properties" : [
+        {"name" : "jobTracker", "value" : "yarnRM"},
+        {"name" : "nameNode", "value" : "hdfs://nameservice1"},
+        {"name" : "hive2Url", "value" : "jdbc:hive2://nn1wow.prod.avvo.com:10000/;retries=3;"},
+        {"name" : "hive2Url2", "value" : "jdbc:hive2://cs1wow.prod.avvo.com:10000/"},
+        {"name" : "hcatMetastoreUri", "value" : "thrift://nn2wow.prod.avvo.com:9083"},
+        {"name" : "principalRealm", "value" : "CORP.AVVO.COM"},
+        {"name" : "zookeeperClientPort", "value" : "2181"},
+        {"name" : "zookeeperQuorum", "value" : "nn1wow.prod.avvo.com,nn2wow.prod.avvo.com,dn6wow.prod.avvo.com"},
+        {"name" : "zookeeper", "value" : "nn1wow.prod.avvo.com:2181"},
+        {"name" : "failureEmailAddress", "value" : "tanuj@avvo.com"},
+        {"name" : "mysqlServer", "value" : "jdbc:mysql://slave.prod.avvo.com:3306"},
+        {"name" : "mysqlServer2", "value" : "jdbc:mysql://db2awl.prod.avvo.com:3307"},
+        {"name" : "mysqlOptionsFile", "value" : "sqoop_options_config_mysql"}
+    ]
+},
+{
+    "environment" : "test",
+    "namespace" : "*",
+    "properties" : [
+        {"name" : "jobTracker", "value" : "yarnRM"},
+        {"name" : "nameNode", "value" : "hdfs://eng-nameservice1"},
+        {"name" : "hive2Url", "value" : "jdbc:hive2://nn1test.prod.avvo.com:10000/;retries=3;"},
+        {"name" : "hive2Url2", "value" : "jdbc:hive2://nn2test.prod.avvo.com:10000/"},
+        {"name" : "hcatMetastoreUri", "value" : "thrift://nn1test.prod.avvo.com:9083"},
+        {"name" : "principalRealm", "value" : "CORP.AVVO.COM"},
+        {"name" : "zookeeperClientPort", "value" : "2181"},
+        {"name" : "zookeeperQuorum", "value" : "nn1test.prod.avvo.com"},
+        {"name" : "zookeeper", "value" : "nn1test.prod.avvo.com:2181"},
+        {"name" : "failureEmailAddress", "value" : "${user.name}@avvo.com"},
+        {"name" : "alertingEmailAddress", "value" : "${user.name}@avvo.com"},
+        {"name" : "mysqlServer", "value" : "jdbc:mysql://slave.prod.avvo.com:3306"},
+        {"name" : "mysqlServer2", "value" : "jdbc:mysql://db2awl.prod.avvo.com:3307"},
+        {"name" : "mysqlOptionsFile", "value" : "sqoop_options_config_mysql"}
+    ]
+},
+{
+    "environment" : "*",
+    "namespace" : "final",
+    "properties" : [
+        {"name" : "srcDatabase", "value" : "src"},
+        {"name" : "mgdSrcDatabase", "value" : "srcmgd"},
+        {"name" : "dmDatabase", "value" : "dm"},
+        {"name" : "aaDatabase", "value" : "aa"},
+        {"name" : "aaDatabaseLocation", "value" : "/analytic/datafile/aa"},
+        {"name" : "oozieLauncherQueueName", "value" : "oozielauncher"}
+    ]
+},
+    {
+    "environment" : "test",
+    "namespace" : "final",
+    "properties" : [
+        {"name" : "srcDatabase", "value" : "src_prod"},
+        {"name" : "dmDatabase", "value" : "dm_prod"}
+    ]
+},
+{
+    "environment" : "*",
+    "namespace" : "user",
+    "properties" : [
+        {"name" : "srcDatabase", "value" : "${user.name}_src"},
+        {"name" : "mgdSrcDatabase", "value" : "${user.name}_srcmgd"},
+        {"name" : "dmDatabase", "value" : "${user.name}_dm"},
+        {"name" : "aaDatabase", "value" : "aa"},
+        {"name" : "oozieLauncherQueueName", "value" : "default"},
+        {"name" : "failureEmailAddress", "value" : "${user.name}@avvo.com"},
+        {"name" : "alertingEmailAddress", "value" : "${user.name}@avvo.com"}
+    ]
+},
+
+{
+    "environment" : "*",
+    "namespace" : "*",
+    "properties" : [
+        {"name" : "oozie.use.system.libpath", "value" : "true"},
+        {"name" : "oozie.libpath", "value" : "/shared/lib/hive,/shared/lib/sqoop"},
+        {"name" : "defaultDataBase", "value" : "default"},
+        {"name" : "defaultDataBaseLocation", "value" : "/user/hive/warehouse"},
+        {"name" : "triggerLocation", "value" : "/analytic/trigger"},
+        {"name" : "hiveConfigPath", "value" : "/shared/config"}
+    ]
+}
+]

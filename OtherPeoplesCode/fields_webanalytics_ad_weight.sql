@@ -1,0 +1,19 @@
+webanalytics_ad_weight
+    ad_id
+    ad_market_key
+    ad_region_id
+    specialty_id
+    template_name
+    render_type_name
+    target_block_count
+    target_impression_count
+    target_purchase_price
+    delivered_impression_count
+    delivered_attribution_value
+    max_block_count
+    total_sold_block_count
+    iq
+    vq
+    ad_weight
+    restart_ad_weight
+    calculation_date

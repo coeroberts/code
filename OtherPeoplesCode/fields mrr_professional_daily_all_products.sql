@@ -1,0 +1,23 @@
+mrr_professional_daily_all_products
+professional_id (int)
+revenue_mtd (decimal(20,2))
+revenue_prior_month (decimal(20,2))
+ad_revenue_mtd (decimal(20,2))
+ad_revenue_prior_month (decimal(20,2))
+mrr_ad (decimal(20,2))
+mrr_ad_prior_month (decimal(20,2))
+mrr_block_ad (decimal(20,2))
+mrr (decimal(20,2))
+mrr_prior_month (decimal(20,2))
+ad_mrr_on_promotion (decimal(20,2))
+promo_flag (string)
+is_active (string)
+etl_load_date (string)
+
+Removed:
+*subscription_id (int)
+*customer_id (int)
+*product_line_id (int)
+*ad_id (int)
+*ad_type (string)
+*market_type (string)

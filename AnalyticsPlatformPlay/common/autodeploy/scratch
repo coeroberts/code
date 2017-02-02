@@ -1,0 +1,51 @@
+#!/bin/bash
+
+usage() {
+    echo ""
+    echo "Usage: deploy2gateway.sh [--env prod|test] [--user final] [--start-time now|today]"
+    echo ""
+    echo "Example: deploy2gateway.sh --env test --user final --start-time now"
+    echo ""
+    echo "     -e, --env, --environment: specify the environment to run in, e.g. test, prod"
+    echo "     -u, --user: username, e.g. final - defaults to current user"
+    echo "     -s, --start-time: if specified, Oozie coordinator start time will be replaced"
+    echo "          now:  current day and time overwrites previous value"
+    echo "          today:  current day is set (time remains unchanged)"
+    echo ""
+}
+
+
+ENV=test
+EXT=$USER
+EXT_SET="false"
+GATEWAY=cg1test
+START_TIME=none
+
+# Validation of the arguments.
+
+COMMON_PATH=$(dirname $0)
+
+while true; do
+  case "$1" in
+    -h | --help ) usage; exit 0 ;;
+    -e | --env | --environment ) ENV="$2"; shift 2 ;;
+    -u | --user ) EXT="$2"; EXT_SET="true"; shift 2 ;;
+    -s | --start-time ) START_TIME="$2"; shift 2 ;;
+    * ) break ;;
+  esac
+done
+
+
+# set gateway host name
+case "$ENV" in
+    "prod" ) GATEWAY="cg1wow"; ;;
+    "test" ) GATEWAY="cg1test"; ;;
+    *) 
+        echo $ENV '- is not a valid environment. It has to be "test" or "prod".'
+        exit 2
+esac
+
+
+
+ssh cg1test 'sudo su -c "cd; pwd; ./predeploy.sh; " jobrunner'
+

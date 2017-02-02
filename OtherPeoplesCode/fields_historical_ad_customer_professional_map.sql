@@ -1,0 +1,11 @@
+historical_ad_customer_professional_map
+    ad_id
+    customer_id
+    professional_id
+    product_line_item_id
+    etl_effective_begin_date
+    etl_effective_end_date
+    source_system_begin_date
+    source_system_end_date
+    etl_load_datetime
+    record_flag

@@ -1,0 +1,26 @@
+order_line_accumulation_fact
+    order_line_number
+    order_number
+    invoice_id
+    product_subscription_id
+    order_line_purchase_date
+    order_line_begin_date
+    order_line_end_date
+    order_line_cancelled_date
+    order_line_payment_date
+    customer_id
+    product_line_id
+    sales_rep_user_account_id
+    order_line_indicator_id
+    professional_id
+    block_count
+    order_line_package_price_amount_usd
+    order_line_purchase_price_amount_usd
+    order_line_price_adjusted_amount_usd
+    order_line_fee_amount_usd
+    order_line_cancelled_price_amount_usd
+    order_line_net_price_amount_usd
+    remnant_flag
+    refund_reason
+    promo_id
+    yearmonth
